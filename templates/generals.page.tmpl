@@ -1,0 +1,61 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <div class="container">
+
+        <div class="row">
+          <div class="col">
+            <img src="/static/images/generals-quarters.png" alt="generals-quarters" class="img-fluid img-thumbnail mx-auto d-block room-image">
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center mt-5">General's Quarters</h1>
+                <p>
+                    Your home away from home, set on the majestic waters of the Atlantic Ocean.
+                    Your home away from home, set on the majestic waters of the Atlantic Ocean.
+                    Your home away from home, set on the majestic waters of the Atlantic Ocean.
+                    Your home away from home, set on the majestic waters of the Atlantic Ocean.
+                    Your home away from home, set on the majestic waters of the Atlantic Ocean.
+                    Your home away from home, set on the majestic waters of the Atlantic Ocean.
+                    Your home away from home, set on the majestic waters of the Atlantic Ocean.
+                    Your home away from home, set on the majestic waters of the Atlantic Ocean.
+                    Your home away from home, set on the majestic waters of the Atlantic Ocean.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <a class="btn btn-success" id="check-availability-button" href="#!">Check Availability</a>
+            </div>
+        </div>
+    </div>
+{{end}}
+
+{{define "js"}}
+    <script>
+        document.getElementById("check-availability-button").addEventListener("click", function(){
+            let attention = prompt()
+            let html = `
+                <form id='check-availabilty-form' novalidate method="post" action="" class="needs-validation">
+                <div class="row">
+                    <div class="col">
+                    <div class="row" id="reservation-dates-modal">
+                        <div class="col">
+                        <input disabled type="text" class="form-control" required name="start" id="start" placeholder="Arrival">
+                        </div>
+                        <div class="col">
+                        <input disabled type="text" class="form-control" required name="end" id="end" placeholder="Departure">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </form>
+            `
+            attention.custom({title: "Choose your dates", html:html})
+            }
+        )
+    </script>
+{{end}}

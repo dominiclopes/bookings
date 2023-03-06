@@ -1,0 +1,16 @@
+.my-footer  {
+    margin-top: 1.5em;
+    font-size: 80%;
+    background-color: blue;
+    padding: 1em;
+    color: white;
+    height: 5em;
+}
+
+.room-image {
+  max-width: 50%;
+}
+
+.notie-container {
+  box-shadow: none;
+}

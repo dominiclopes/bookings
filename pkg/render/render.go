@@ -23,7 +23,16 @@ func AddDefaultData(td *models.TemplateData) *models.TemplateData {
 
 func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
 	// get the template cache
-	tc := app.TemplateCache
+	var tc map[string]*template.Template
+	var err error
+	if app.InProduction {
+		tc = app.TemplateCache
+	} else {
+		tc, err = CreateTemplateCache()
+		if err != nil {
+			log.Fatalf("error creating the template cache, err: %v", err)
+		}
+	}
 
 	// get the requested template from the cache
 	t, ok := tc[tmpl]
@@ -34,7 +43,7 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData)
 	// render the template
 	buf := new(bytes.Buffer)
 	td = AddDefaultData(td)
-	err := t.Execute(buf, td)
+	err = t.Execute(buf, td)
 	if err != nil {
 		log.Printf("error executing the parsed template %s, err: %v", tmpl, err)
 		return
